@@ -1,0 +1,3 @@
+greicodex_phonebook_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: GreicodexPhonebookBundle:Default:index }

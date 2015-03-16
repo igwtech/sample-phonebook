@@ -1,0 +1,18 @@
+{% extends 'GreicodexPhonebookBundle::base.html.twig' %}
+
+{% block body -%}
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="record_actions nav nav-sidebar">
+            <li>
+                <a href="{{ path('contact') }}">
+                    Back to Phonrbook
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1>Contact creation</h1>
+
+        {{ form(form) }}
+    </div>
+{% endblock %}

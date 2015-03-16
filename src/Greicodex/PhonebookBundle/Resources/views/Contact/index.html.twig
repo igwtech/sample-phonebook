@@ -1,0 +1,66 @@
+{% extends 'GreicodexPhonebookBundle::base.html.twig' %}
+
+{% block body -%}
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="record_actions nav nav-sidebar">
+            <li>
+                <a href="{{ path('contact_new') }}">
+                    Create a new entry
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="table-responsive">
+            <h1>Contact list</h1>
+            <div class="count">
+                <span>Total: {{ pagination.getTotalItemCount }}</span>
+            </div>
+            <table class="col-md-8 records_list table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        {# sorting of properties based on query components #}
+
+                        <th{% if pagination.isSorted('c.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'c.name') }}</th>
+                        <th{% if pagination.isSorted('c.Phone') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Phone', 'c.phone') }}</th>
+                        <th{% if pagination.isSorted('c.Creation') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created', 'c.creation') }}</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    {% for entity in pagination %}
+                        <tr>
+
+                            <td>{{ entity.name }}</td>
+                            <td>{{ entity.phone }}</td>
+                            <td>{% if entity.creation %}{{ entity.creation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>
+                                <ul class="btn-group">
+                                    <li class="btn btn-default btn-sm">
+                                        <a title="View" class="glyphicon glyphicon-eye-open" href="{{ path('contact_show', { 'id': entity.id }) }}">
+                                            <span style="display: none">show</span></a>
+                                    </li>
+                                    <li class="btn btn-default btn-sm">
+                                        <a title="Edit"  class="glyphicon glyphicon-pencil" href="{{ path('contact_edit', { 'id': entity.id }) }}">
+                                            <span style="display: none">edit</span></a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        {% else %}
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Sorry!</strong> Couldn't find anything matching that search criteria
+                          </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation pagination">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
