@@ -1,8 +1,8 @@
-Symfony Standard Edition
+Symfony Phonebook Application
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Welcome to the Symfony Phonebook Application - a fully-functional Symfony2
+application that you can use to keep your contacts.
 
 For details on how to download and get started with Symfony, see the
 [Installation][1] chapter of the Symfony Documentation.
@@ -10,9 +10,9 @@ For details on how to download and get started with Symfony, see the
 What's inside?
 --------------
 
-The Symfony Standard Edition is configured with the following defaults:
+The Symfony Phonebook Application is configured with the following defaults:
 
-  * An AppBundle you can use to start coding;
+  * An GreicodexPhonebookBundle you can use to verify our coding;
 
   * Twig as the only configured template engine;
 
@@ -55,6 +55,14 @@ It comes pre-configured with the following bundles:
 
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.
+
+Installation
+--------------
+  * Run composer update
+  * Copy app/config/parameters.yml.dist as app/config/parameters.yml and modify to match your database configuration
+  * Create the database with php app/console doctrine:database:create
+  * Load the sample database with cat phonebook.sql | mysql -u<user> -p<pass> phonebook
+  * Reset the "admin" password with php app/console fos:user:change-password 
 
 Enjoy!
 
